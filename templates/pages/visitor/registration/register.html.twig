@@ -1,23 +1,187 @@
 <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inscription - Le blog de Oumi</title>
+        <meta name="description" content="Inscrivez vous pour commenter et aimer des articles intéréssants">
 
-<title>Register</title>
+        <meta name="robots" content="index,follow">
+        <meta name="author" content="Oumi">
+        <meta name="publisher" content="dwwm">
 
-{% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+        {# google font #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <h1>Register</h1>
+        {# Favicon #}
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96"/>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+        <link rel="manifest" href="/site.webmanifest"/>
 
-    {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.password, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button formnovalidate type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body class="h-100">
+        <div class="container my-3">
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    {# Img #}
+                    <img src="/images/static/registration/registration.png" alt="" class="img-fluid">
+                </div>
+                <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+
+                    {# title #}
+                    <div>
+                        <h1>Inscription</h1>
+                    </div>
+
+                    {% for flash_error in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                    {% endfor %}
+
+
+                    {# Form #}
+                    {{ form_start(registrationForm) }}
+                        <div class="row">
+                            <div class="col-lg-6 mb-3">
+                                <label for="registration_form_firstName">Prénom <span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(registrationForm.firstName) }}</div>
+                                {{ form_widget(registrationForm.firstName,{'attr': {'class':'form-control','autofocus':'autofocus'}}) }}
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="registration_form_lastName">Nom <span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(registrationForm.lastName) }}</div>
+                                {{ form_widget(registrationForm.lastName,{'attr': {'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 mb-3">
+                                <label for="registration_form_email">Email <span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(registrationForm.email) }}</div>
+                                {{ form_widget(registrationForm.email,{'attr': {'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 mb-3">
+                                <label for="registration_form_password_first">Mot de passe <span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(registrationForm.password.first) }}</div>
+                                {{ form_widget(registrationForm.password.first,{'attr': {'class':'form-control', 'placeholder': 'Au moin 12 caractères'}})}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 mb-3">
+                                <label for="registration_form_password_second">Confirmation de mot de passe <span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(registrationForm.password.second) }}</div>
+                                {{ form_widget(registrationForm.password.second,{'attr': {'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registration_form_agreeTerms">
+                                <div class="text-danger">{{ form_errors(registrationForm.agreeTerms) }}</div>
+                                {{ form_widget(registrationForm.agreeTerms) }} <span>Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#agreeTermsModal">les conditions générales d'utilisation</a></span>
+                            </label>
+
+                        <!-- Modal -->
+                         <div class="modal fade" id="agreeTermsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agreeTermsModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Les conditions générales d'utilisation</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                            <div class="modal-body">
+                                                                Conditions Générales d'Utilisation (CGU)
+                                Site : plantes-du-monde.com  - Le blog des plantes médicinales
+                                Dernière mise à jour : 29 mai 2025
+
+                                1. Présentation du site
+                                Le site www.plantes-du-monde.com  est un blog dédié à la découverte, l’usage traditionnel et les bienfaits des plantes médicinales. Il est édité par Ahmed BAAZIZ, Product Owner du projet, en collaboration avec Oumi, cliente à l’origine du concept.
+                                Pour toute question, vous pouvez nous contacter à l’adresse suivante : plantes-du-monde@gmail.com.
+
+                                2. Objet des CGU
+                                Les présentes Conditions Générales d’Utilisation ont pour objet de définir les règles d’accès et d’utilisation du site par les visiteurs, lecteurs et membres.
+
+                                3. Acceptation des conditions
+                                En accédant au site plantes-du-monde.com , vous acceptez sans réserve les présentes CGU. Si vous n’êtes pas d’accord avec tout ou partie de ces conditions, vous êtes invité à ne pas utiliser le site.
+
+                                4. Services proposés
+                                Le site propose :
+
+                                Des articles informatifs sur les plantes médicinales ;
+
+                                Des fiches pratiques (usages, précautions, bienfaits) ;
+
+                                Des conseils de culture et d’utilisation ;
+
+                                La possibilité de commenter les publications ;
+
+                                Une newsletter (sur inscription).
+
+                                5. Propriété intellectuelle
+                                L’ensemble du contenu publié sur plantes-du-monde.com  (textes, images, illustrations, vidéos, logo) est protégé par le droit d’auteur. Toute reproduction, distribution ou utilisation non autorisée est strictement interdite.
+
+                                6. Contributions des utilisateurs
+                                Les utilisateurs peuvent commenter les articles sous réserve de respecter les règles suivantes :
+
+                                Respect d’autrui (pas d’insultes, propos haineux ou discriminatoires) ;
+
+                                Pas de publicité ou promotion déguisée ;
+
+                                Pas de contenus médicaux engageant un diagnostic personnel.
+
+                                L’équipe de plantes-du-monde.com  se réserve le droit de modérer ou supprimer tout commentaire jugé inapproprié.
+
+                                7. Responsabilité
+                                Les informations diffusées sur plantes-du-monde.com  sont fournies à titre informatif. Elles ne se substituent en aucun cas à un avis médical. L’utilisateur est invité à consulter un professionnel de santé avant toute utilisation de plantes à des fins thérapeutiques.
+                                Le site ne saurait être tenu responsable d’un mauvais usage des conseils fournis.
+
+                                8. Données personnelles
+                                Des données (email, prénom) peuvent être collectées lors de l’inscription à la newsletter ou via les commentaires. Elles sont utilisées uniquement pour l’envoi d’informations liées au blog et ne sont jamais transmises à des tiers.
+                                Conformément au RGPD, vous disposez d’un droit d’accès, de modification et de suppression de vos données sur simple demande.
+
+                                9. Modification des CGU
+                                Les présentes CGU peuvent être mises à jour à tout moment. En cas de modification majeure, les utilisateurs seront informés via le site ou par email.
+
+                                10. Droit applicable
+                                Le présent site est soumis au droit français. En cas de litige, les tribunaux compétents seront ceux du ressort du siège de l’éditeur.
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        </div>
+                        <div>
+                            <input formnovalidate type="submit" class="btn btn-primary w-100 shadow" value="S'inscrire">
+                        </div>
+                    {{ form_end(registrationForm) }}
+                    {# Links #}
+                    <div class="text-center mt-3">
+                        <p>Vous avez déjà un compte?<a href=""></a>Connectez-vous</p>
+                        <p><a href="{{path('app_visitor_welcome')}}">Retour à l'acceuil</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+    
