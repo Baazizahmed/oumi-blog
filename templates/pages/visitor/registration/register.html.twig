@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-lg-6 text-center">
                     {# Img #}
-                    <img src="/images/static/registration/registration.png" alt="" class="img-fluid">
+                    <img src="/images/static/registration/registration.png" alt="Hello,c'est Oumi.je vous invite à vous inscrire" class="img-fluid">
                 </div>
                 <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
 
@@ -173,7 +173,7 @@
                     {{ form_end(registrationForm) }}
                     {# Links #}
                     <div class="text-center mt-3">
-                        <p>Vous avez déjà un compte?<a href=""></a>Connectez-vous</p>
+                        <p>Vous avez déjà un compte?<a href="{{path('app_login')}}">Connectez-vous</a></p>
                         <p><a href="{{path('app_visitor_welcome')}}">Retour à l'acceuil</a></p>
                     </div>
                 </div>
