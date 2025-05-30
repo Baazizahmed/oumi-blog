@@ -31,6 +31,10 @@ security:
                 #always_remember_me: true
             user_checker: App\Security\UserChecker
 
+            login_throttling:
+                max_attempts: 5          # per minute ...
+                interval: '5 minutes' # ... or in a custom period
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
