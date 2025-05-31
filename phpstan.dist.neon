@@ -6,3 +6,4 @@ parameters:
     ignoreErrors:
         - '#Call to function method_exists\(\) with .*Symfony\\\\Component\\\\Dotenv\\\\Dotenv.*bootEnv.*will always evaluate to true#'
         - '#Property App\\Entity\\User::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
+        - '#Property App\\Entity\\ResetPasswordRequest::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
