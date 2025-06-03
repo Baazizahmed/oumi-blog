@@ -1,0 +1,15 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block description %}Liste des articles{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5 my-3">Liste des articles</h1>
+
+    {% include 'components/alert.html.twig' %}
+
+    <div class="d-flex justify-content-end align-items-center">
+        <a href="{{path('app_admin_post_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouvelle article</a>
+    </div>
+{% endblock %}
