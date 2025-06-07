@@ -46,7 +46,7 @@
                             {% if post.isPublished %} 
                                 <span ><i class="fa-regular fa-calendar-check"></i> publié le {{post.publishedAt|date()}}</span>
                                 {% else %}
-                                <span class="text-danger"><i class="fa-regular fa-circle-xmark"></i></span>
+                                <span class="text-danger"><i class="fa-solid fa-circle-xmark"></i></span>
                             {% endif %}
                             <form action="{{path('app_admin_post_publish', {'id':post.id})}}" method="post">
                                 <div class="form-check form-switch d-flex justify-content-center align-items-center">
