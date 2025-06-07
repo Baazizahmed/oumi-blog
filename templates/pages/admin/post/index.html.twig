@@ -4,6 +4,25 @@
 
 {% block description %}Liste des articles{% endblock %}
 
+{% block jQuery %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+{% block dataTables %}
+    <link href="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.css" rel="stylesheet" integrity="sha384-euvbLDizNhjdB+SK/Ai+GY3WCCHaDJM1tnnh2IqvUY9zjhlo21JkywSg8X5hlMY8" crossorigin="anonymous">
+ 
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.js" integrity="sha384-1LmfH5u7+DRwux/q4YYqAi+OjwkIVYJdPQijPS9S28cj8AeFnpNCkSVlZgvRdOzb" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/2.3.1/i18n/fr-FR.json',
+                },
+            });
+        } );
+    </script>
+{% endblock %}
+
 {% block main %}
     <h1 class="text-center my-3 display-5 my-3">Liste des articles</h1>
 
@@ -14,7 +33,7 @@
     </div>
 
     <div class="table-responsive">
-       <table class="table table-striped table-hover table-bordered text-center">
+       <table id="myTable" class="table table-striped table-hover table-bordered text-center">
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
