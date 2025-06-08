@@ -5,5 +5,5 @@
 {% block description %}Lisez des articles les remèdes et le bien étre des plantes{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Liste des articles</h1>
+    {% include 'components/visitor/header-visitor.html.twig' with {'h1': 'Liste des articles'} %}
 {% endblock %}
