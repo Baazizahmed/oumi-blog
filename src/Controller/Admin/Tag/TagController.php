@@ -30,7 +30,7 @@ final class TagController extends AbstractController
         ]);
     }
 
-    #[Route('/tag/create', name: 'app_admin_tag_create', methods: ['GET', 'tag'])]
+    #[Route('/tag/create', name: 'app_admin_tag_create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
         $tag = new Tag();
