@@ -1,0 +1,66 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}Contactez-moi{% endblock %}
+
+{% block description %}Contactez-moi pour tous infos{% endblock %}
+{# Font awesome #}
+{% block fontAwesome %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block main %}
+    {% include 'components/visitor/header-visitor.html.twig' with {'h1': 'Contactez-moi'} %}
+
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+
+            {% include 'components/alert.html.twig' %}
+
+
+                {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="visitor_contact_form_firstName">Prénom <span class="text-danger">*</span></label>
+                            <div class="text-danger">{{ form_errors(form.firstName) }}</div>
+                            {{ form_widget(form.firstName,{'attr': {'class': 'form-control', 'autofocus': 'autofocus'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="visitor_contact_form_lastName">Nom <span class="text-danger">*</span></label>
+                            <div class="text-danger">{{ form_errors(form.lastName) }}</div>
+                            {{ form_widget(form.lastName,{'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="visitor_contact_form_email">Email <span class="text-danger">*</span></label>
+                            <div class="text-danger">{{ form_errors(form.email) }}</div>
+                            {{ form_widget(form.email,{'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="visitor_contact_form_phone">Téléphone</label>
+                            <div class="text-danger">{{ form_errors(form.phone) }}</div>
+                            {{ form_widget(form.phone,{'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="visitor_contact_form_message">Messsage <span class="text-danger">*</span></label>
+                        <div class="text-danger">{{ form_errors(form.message) }}</div>
+                        {{ form_widget(form.message,{'attr': {'class': 'form-control', 'rows':4}}) }}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-sm btn-primary shadow">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+                <p><i class="fa-solid fa-envelope"></i> : plantes-du-du-monde@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> :07 00 00 00 00</p>
+                <div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.6234710119184!2d2.3670098863940616!3d48.82724522898099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e673ad4924d833%3A0x8f50983162821f36!2sPlantes%20%26%20Sant%C3%A9!5e0!3m2!1sfr!2sfr!4v1749413087660!5m2!1sfr!2sfr"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
