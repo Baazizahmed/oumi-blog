@@ -1,0 +1,93 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Liste des Contacts{% endblock %}
+
+{% block description %}Liste des Contacts{% endblock %}
+
+{% block jQuery %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+{% block dataTables %}
+    <link href="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.css" rel="stylesheet" integrity="sha384-euvbLDizNhjdB+SK/Ai+GY3WCCHaDJM1tnnh2IqvUY9zjhlo21JkywSg8X5hlMY8" crossorigin="anonymous">
+ 
+    <script src="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.js" integrity="sha384-1LmfH5u7+DRwux/q4YYqAi+OjwkIVYJdPQijPS9S28cj8AeFnpNCkSVlZgvRdOzb" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/2.3.1/i18n/fr-FR.json',
+                },
+            });
+        } );
+    </script>
+{% endblock %}
+
+
+
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Liste des Contacts</h1>
+
+    {% include 'components/alert.html.twig' %}
+
+
+    <div class="table-responsive">
+        <table id="myTable" class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Message</th>
+                <th>Créé le</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{contact.firstName}}</td>
+                    <td>{{contact.lastName}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.phone}}</td>
+                    <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#contact-backdrop-{{contact.id}}">
+                                Lire
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="contact-backdrop-{{contact.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Le message de {{contact.firstName}} {{contact.lastName}}</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ contact.message|nl2br }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </td>
+                    <td>{{contact.createdAt|date()}}</td>
+                    <td>
+                        <form class="d-inline" action="{{path('app_admin_contact_delete',{'id':contact.id})}}" method="post">
+                            <input type="hidden" name="csrf_token" value="{{csrf_token('delete-contact-'~contact.id)}}">
+                            <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('Confirmer la suppression?')">
+                        </form>
+                    </td>
+                </tr>   
+            {% endfor %}
+        </tbody>
+
+        </table>
+    </div>
+
+{% endblock %}
