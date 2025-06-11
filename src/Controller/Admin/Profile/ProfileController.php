@@ -5,17 +5,20 @@ namespace App\Controller\Admin\Profile;
 use App\Entity\User;
 use DateTimeImmutable;
 use App\Form\EditProfileForm;
+use App\Form\EditPasswordForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/admin')]
 final class ProfileController extends AbstractController
 {
     public function __construct(
-        private EntityManagerInterface $entityMager
+        private EntityManagerInterface $entityMager,
+        private UserPasswordHasherInterface $hasher
     )
     {  
     }
@@ -41,7 +44,7 @@ final class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) 
         {
             $admin->setUpdatedAt(new DateTimeImmutable());
-            
+
             $this->entityMager->persist($admin);
             $this->entityMager->flush();
 
@@ -53,5 +56,43 @@ final class ProfileController extends AbstractController
         return $this->render('pages/admin/profile/edit_profile.html.twig',[
             "form" => $form->createView()
         ]);
+    }
+
+    #[Route('/profile/edit-password', name: 'app_admin_profile_edit_password',methods:['GET','POST'])]
+    public function editPassword(Request $request): Response
+    {
+
+        $form = $this->createForm(EditPasswordForm::class,null);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            /**
+             * @var User
+             */
+            $admin = $this->getUser();
+
+            $data = $form->getData();
+            
+
+
+            $passwordHahed = $this->hasher->hashPassword($admin,$data['plainPassword']);
+
+            $admin->setPassword($passwordHahed);
+            $admin->setUpdatedAt(new DateTimeImmutable());
+
+            $this->entityMager->persist($admin);
+            $this->entityMager->flush();
+
+            $this->addFlash('success',"Le mot de passe a été modifié");
+
+            return $this->redirectToRoute('app_admin_profile_index');
+        }
+
+        return $this->render('pages/admin/profile/edit_password.html.twig',[
+            "form" => $form->createView()
+        ]);
+
     }
 }
