@@ -19,7 +19,6 @@ class PostRepository extends ServiceEntityRepository
     /**
      * cette méthode flitre les posts en fonction du tag précisé.
      *
-     * @param integer $tag_id
      * @return array<int, Post>
      */
     public function filterPostsByTag(int $tag_id): array
