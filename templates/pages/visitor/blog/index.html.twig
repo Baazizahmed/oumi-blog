@@ -27,7 +27,7 @@
                                 <li><a class="dropdown-item" href="{{path('app_visitor_blog_filter_by_category',{'id':category.id,'slug': category.slug})}}">{{category.name}} ({{categoryPostsLength}} article{{categoryPostsLength > 1 ? 's' : '' }}) </a></li>
                             {% endfor %}
                         {% else %}
-                            <li><a class="dropdown-item" href="#">Aucune tagcategorie disponible</a></li>
+                            <li><a class="dropdown-item" href="#">Aucune categorie disponible</a></li>
                         {% endif %} 
                     </ul>
                 </div>
@@ -67,8 +67,8 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h2 class="card-title">{{post.title}}</h2>
-                                    <p class="card-text">{{post.description}}</p>
+                                    <h2 class="card-title">{{post.title|u.truncate('80', '...')}}</h2>
+                                    <p class="card-text">{{post.description|u.truncate('80', '...')}}</p>
                                     <p><strong>Categorie: </strong> {{post.category.name}}</p>
                                     {% if post.tags is not empty %}
                                         <p>
@@ -82,7 +82,7 @@
                                     <p class="card-text"><small class="text-muted">Publié {{post.publishedAt|ago}}</small></p>
 
                                     <p>
-                                        <a href="" class="btn btn-lg btn-primary shadow">Lire l'article</a>
+                                        <a href="{{path('app_visitor_blog_post_show',{'id':post.id,'slug':post.slug})}}" class="btn btn-lg btn-primary shadow">Lire l'article</a>
                                     </p>
 
                                 </div>
