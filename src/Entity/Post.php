@@ -97,9 +97,16 @@ class Post
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
     private Collection $tags;
 
+    /**
+     * @var Collection<int, Like>
+     */
+    #[ORM\OneToMany(targetEntity: Like::class, mappedBy: 'post', orphanRemoval: true)]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -291,5 +298,56 @@ class Post
         $this->tags->removeElement($tag);
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Like>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): static
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getPost() === $this) {
+                $like->setPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Cette méthode permet de savoir si l'article a été liké ou non par l'utilisateur connecté.
+     */
+    public function isLikedBy(User $user): bool
+    {
+        // Récupérons les likes associés à l'article concerné, sous forme de tableau à parcourir.
+        $likes = $this->getLikes()->toArray();
+
+        // pour chaque like du tableau des likes,
+        foreach ($likes as $like) {
+            // Si l'utilisateur qui a déja lké l'article est le même que l'utilisateur connecté,
+            if ($like->getUser() == $user) {
+                // Alor retourne true pour confirmer cela.
+                return true;
+            }
+        }
+
+        // Dans le cas contraire, aprés avoir parcouru tout le tableau, retourne false.
+        return false;
     }
 }
