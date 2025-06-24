@@ -53,6 +53,7 @@
                 {{ form_start(form, {'action': path('app_visitor_blog_post_show', {'id':post.id, 'slug':post.slug})~'#comments-container'})}}
                     <div class="mb-3">
                         <label for="comment_form_content">Laisser un commentaire</label>
+                        <div class="text-danger">{{ form_errors(form.content) }}</div>
                         {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
                     </div>
                     <div>
