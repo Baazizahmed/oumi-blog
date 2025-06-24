@@ -46,9 +46,43 @@
             <span id="total-likes-container">{{post.likes|length}}</span>
             <span>J'aime</span>
         </div>
-    </div>
 
-    
+        {% if app.user %}
+            {# Form #}
+            <div class="my-5">
+                {{ form_start(form, {'action': path('app_visitor_blog_post_show', {'id':post.id, 'slug':post.slug})~'#comments-container'})}}
+                    <div class="mb-3">
+                        <label for="comment_form_content">Laisser un commentaire</label>
+                        {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary shadow">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        {% else %}
+            <p class="text-center my-5">
+                Connectez-vous ou inscrivez-vous pour donner votre avis:
+                <a href="{{path('app_login')}}" class="btn btn-secondary shadow">Me connecter</a>
+                <a href="{{path('app_register')}}" class="btn btn-secondary shadow">M'inscrire'</a>
+            </p>
+        {% endif %}
+
+        {% if post.comments|length > 0 %}
+            <div id="comments-container" class="my-5">
+                {% for comment in post.comments|reverse %}
+                    {% if comment.isActivated %}
+                        <div class="shadow p-2">
+                            <p><strong>{{comment.user.firstName}} {{comment.user.lastName}}</strong><small class="text-secondary"><i>{{comment.activatedAt ? ' (Envoyé ' ~ comment.activatedAt|ago ~')': ''}}</i></small></p>
+                            
+                            <p>{{comment.content}}</p>
+                        </div>
+                    {% endif %}
+                    <hr class="my-3">
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 
 </div>
     
