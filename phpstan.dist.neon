@@ -16,6 +16,8 @@ parameters:
         - '#Property App\\Entity\\Contact::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
         - '#Property App\\Entity\\Setting::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
         - '#Property App\\Entity\\Like::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
+        - '#Property App\\Entity\\Comment::\$id \(int\|null\) is never assigned int so it can be removed from the property type#'
+        - '#Property App\\Entity\\Comment::\$isActivated \(bool\|null\) is never assigned null so it can be removed from the property type#'
         
         
 
