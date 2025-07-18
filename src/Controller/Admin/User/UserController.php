@@ -41,7 +41,7 @@ final class UserController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-            $this->addFlash('success', "Les roles de {$user->getFirstName()} {$user->getLastName()} ont été modifié.}");
+            $this->addFlash('success', "Les roles de {$user->getFirstName()} {$user->getLastName()} ont été modifié.");
 
             return $this->redirectToRoute('app_admin_user_index');
         }
@@ -58,10 +58,17 @@ final class UserController extends AbstractController
             $userFullName = "{$user->getFirstName()} {$user->getLastName()}";
 
             $userPosts = $user->getPosts();
+            $userComments = $user->getComments();
 
             if (count($userPosts) > 0) {
                 foreach ($userPosts as $post) {
                     $post->setUser(null);
+                }
+            }
+
+            if (count($userComments) > 0) {
+                foreach ($userComments as $comment) {
+                    $comment->setUser(null);
                 }
             }
 
