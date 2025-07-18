@@ -49,8 +49,14 @@
             {% for comment in comments %}
                 <tr>
                     <td>{{comment.id}}</td>
-                    <td>{{comment.user.firstName}} {{comment.user.lastName}}</td>
-                    <td>{{comment.user.email}}</td>
+                    {% if comment.user %}
+                        <td>{{comment.user.firstName}} {{comment.user.lastName}}</td>
+                        <td>{{comment.user.email}}</td>
+                    {% else %}
+                        <td><i class="fas fa-user-slash text-muted"></i></td>
+                        <td><i class="fas fa-user-slash text-muted"></i></td>
+                    {% endif %}
+                    
                     <td>{{comment.post.title|u.truncate('60', '...')}}</td>
                     <td>
                             {% if comment.isActivated %} 
