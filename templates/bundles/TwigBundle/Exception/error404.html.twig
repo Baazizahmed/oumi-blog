@@ -3,36 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site en maintenance</title>
+    <title>Page non trouvée</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #2C3E50;
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 1rem;
             text-align: center;
+            padding: 5rem 1rem;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: #BDC3C7;
+            color: #E74C3C;
         }
 
         p {
             font-size: 1.2rem;
-            color: #ffffff;
         }
 
         a {
-            margin-top: 2rem;
             display: inline-block;
+            margin-top: 2rem;
             padding: 0.75rem 1.5rem;
             background-color: #E74C3C;
             color: #ffffff;
@@ -52,13 +45,14 @@
 
             a {
                 width: 100%;
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <h1>🚧 Le site est en maintenance</h1>
-    <p>Nous faisons une petite pause pour améliorer l'expérience. Revenez dans quelques instants.</p>
-    
+    <h1>404 - Page non trouvée</h1>
+    <p>Oups, il semble que cette page n'existe pas.</p>
+    <a href="{{ path('app_visitor_welcome') }}">Retour à l'accueil</a>
 </body>
 </html>

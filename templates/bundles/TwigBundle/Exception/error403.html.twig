@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site en maintenance</title>
+    <title>Accès refusé</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -21,22 +21,20 @@
 
         h1 {
             font-size: 2.5rem;
+            color: #E74C3C;
             margin-bottom: 1rem;
-            color: #BDC3C7;
         }
 
         p {
             font-size: 1.2rem;
-            color: #ffffff;
+            margin-bottom: 2rem;
         }
 
         a {
-            margin-top: 2rem;
-            display: inline-block;
+            text-decoration: none;
             padding: 0.75rem 1.5rem;
             background-color: #E74C3C;
             color: #ffffff;
-            text-decoration: none;
             border-radius: 4px;
             transition: background-color 0.3s ease;
         }
@@ -57,8 +55,8 @@
     </style>
 </head>
 <body>
-    <h1>🚧 Le site est en maintenance</h1>
-    <p>Nous faisons une petite pause pour améliorer l'expérience. Revenez dans quelques instants.</p>
-    
+    <h1>Accès non autorisé</h1>
+    <p>Vous n'avez pas la permission d'afficher cette page.</p>
+    <a href="{{ path('app_visitor_welcome') }}">Retour à l'accueil</a>
 </body>
 </html>
