@@ -42,7 +42,7 @@ final class BlogController extends AbstractController
         $posts = $this->paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1), /* page number */
-            4 /* limit per page */
+            3 /* limit per page */
         );
 
         return $this->render('pages/visitor/blog/index.html.twig', [
@@ -53,9 +53,15 @@ final class BlogController extends AbstractController
     }
 
     #[Route('/blog/articles-flitre-par-categorie/{id<\d+>}/{slug}', name: 'app_visitor_blog_filter_by_category', methods: ['GET'])]
-    public function postsFilterByCategory(Category $category): Response
+    public function postsFilterByCategory(Request $request, Category $category): Response
     {
-        $posts = $this->postRepository->findby(['category' => $category], ['isPublished' => 'DESC']);
+        $query = $this->postRepository->findBy(['category' => $category, 'isPublished' => true], ['publishedAt' => 'DESC']);
+
+        $posts = $this->paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /* page number */
+            3 /* limit per page */
+        );
 
         return $this->render('pages/visitor/blog/index.html.twig', [
             'categories' => $this->categoryRepository->findAll(),
@@ -65,9 +71,15 @@ final class BlogController extends AbstractController
     }
 
     #[Route('/blog/articles-flitre-par-tag/{id<\d+>}/{slug}', name: 'app_visitor_blog_filter_by_tag', methods: ['GET'])]
-    public function postsFilterByTag(Tag $tag): Response
+    public function postsFilterByTag(Request $request, Tag $tag): Response
     {
-        $posts = $this->postRepository->filterPostsByTag($tag->getId());
+        $query = $this->postRepository->filterPostsByTag($tag->getId());
+
+        $posts = $this->paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /* page number */
+            3 /* limit per page */
+        );
 
         return $this->render('pages/visitor/blog/index.html.twig', [
             'categories' => $this->categoryRepository->findAll(),
