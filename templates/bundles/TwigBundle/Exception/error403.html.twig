@@ -1,62 +1,47 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accès refusé</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #2C3E50;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 1rem;
-            text-align: center;
-        }
+{% extends "themes/base_visitor.html.twig" %}
 
-        h1 {
-            font-size: 2.5rem;
-            color: #E74C3C;
-            margin-bottom: 1rem;
-        }
+{% block title %}Accès Interdit (Erreur 403){% endblock %}
+{% block description %}Vous n'avez pas les autorisations nécessaires pour consulter cette page du blog Oumi.{% endblock %}
 
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
+{# On dit à Google de ne pas indexer cette page #}
+{% block meta_robots %}
+    <meta name="robots" content="noindex, follow">
+{% endblock %}
 
-        a {
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            background-color: #E74C3C;
-            color: #ffffff;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
 
-        a:hover {
-            background-color: #c0392b;
-        }
+{% block main %}
+<div class="container my-5">
+    <div class="row align-items-center justify-content-center">
+        
+        <div class="col-md-5 d-none d-md-block">
+            <img src="/images/static/errors/403-illustration.png" class="img-fluid" alt="Illustration d'un chemin privé">
+        </div>
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+        <div class="col-md-6 text-center text-md-start">
+            
+            {# La couleur 'danger' de Bootstrap (rouge) est appropriée pour une interdiction #}
+            <h1 class="display-1 fw-bold text-danger">403</h1>
+            <h2 class="h3 mb-3">Accès réservé</h2>
+            <p class="lead text-muted mb-4">
+                Ce petit coin du jardin est privé. Seuls les utilisateurs avec la bonne permission peuvent y entrer.
+            </p>
+            
+            <div class="mt-4">
+                {# On affiche un lien différent si l'utilisateur est connecté #}
+                {% if app.user %}
+                    <a href="{{ path('app_user_home') }}" class="btn btn-primary shadow-sm">
+                        <i class="fas fa-user-circle me-2"></i>
+                        Retourner à mon espace
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_visitor_welcome') }}" class="btn btn-primary shadow-sm">
+                        <i class="fas fa-home me-2"></i>
+                        Retourner à l'accueil
+                    </a>
+                {% endif %}
+            </div>
+        </div>
 
-            a {
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body>
-    <h1>Accès non autorisé</h1>
-    <p>Vous n'avez pas la permission d'afficher cette page.</p>
-    <a href="{{ path('app_visitor_welcome') }}">Retour à l'accueil</a>
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}

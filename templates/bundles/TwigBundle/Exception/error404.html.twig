@@ -1,58 +1,43 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page non trouvée</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #2C3E50;
-            color: #ffffff;
-            text-align: center;
-            padding: 5rem 1rem;
-        }
+{% extends "themes/base_visitor.html.twig" %}
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #E74C3C;
-        }
+{% block title %}Page Introuvable (Erreur 404) - Oumi Blog{% endblock %}
+{% block description %}La page que vous recherchez sur le blog Oumi n'existe pas ou a été déplacée.{% endblock %}
 
-        p {
-            font-size: 1.2rem;
-        }
+{# On dit à Google de ne pas indexer cette page #}
+{% block meta_robots %}
+    <meta name="robots" content="noindex, follow">
+{% endblock %}
 
-        a {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #E74C3C;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
 
-        a:hover {
-            background-color: #c0392b;
-        }
+{% block main %}
+<div class="container my-5">
+    <div class="row align-items-center justify-content-center">
+        
+        <div class="col-md-5 d-none d-md-block">
+            {# Cherchez une illustration sur undraw.co comme "lost", "nature", "404" #}
+            {# Placez-la dans public/images/static/errors/ et changez le nom du fichier #}
+            <img src="/images/static/errors/404-illustration.svg" class="img-fluid" alt="Illustration d'une personne perdue dans la nature">
+        </div>
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+        <div class="col-md-6 text-center text-md-start">
+            
+            <h1 class="display-1 fw-bold text-primary">404</h1>
+            <h2 class="h3 mb-3">Un chemin inexploré...</h2>
+            <p class="lead text-muted mb-4">
+                La page que vous cherchez a peut-être pris racine ailleurs, ou n'a tout simplement jamais fleuri.
+            </p>
+            
+            <div class="mt-4">
+                <a href="{{ path('app_visitor_welcome') }}" class="btn btn-primary shadow-sm">
+                    <i class="fas fa-home me-2"></i>
+                    Retourner à l'accueil
+                </a>
+                <a href="{{ path('app_visitor_blog_index') }}" class="btn btn-outline-secondary ms-2">
+                    Explorer les articles
+                </a>
+            </div>
+        </div>
 
-            a {
-                width: 100%;
-                padding: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <h1>404 - Page non trouvée</h1>
-    <p>Oups, il semble que cette page n'existe pas.</p>
-    <a href="{{ path('app_visitor_welcome') }}">Retour à l'accueil</a>
-</body>
-</html>
+    </div>
+</div>
+{% endblock %}
