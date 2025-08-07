@@ -1,0 +1,19 @@
+.footer-oumi-simple {
+    background-color: $primary;
+    border-top: 1px solid darken($fond-beige-clair, 10%); // Ajoute une fine ligne de séparation
+
+    .copyright-text {
+        color: $texte-gris-fonce;
+        font-size: 0.9rem;
+    }
+
+    .footer-social-link {
+        color: $texte-gris-fonce;
+        font-size: 1.2rem;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: $vert-medicinal; // Les icônes deviennent vertes au survol
+        }
+    }
+}
