@@ -143,8 +143,8 @@
 			.navbar-brand {
 				padding-top: 0.75rem;
 				padding-bottom: 0.75rem;
-				background-color: rgba(0, 0, 0, 0.25);
-				box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+				background-color: #2e7d32;
+				box-shadow: inset -1px 0 0 #2e7d32;
 			}
 
 			.navbar .form-control {
@@ -153,7 +153,7 @@
 		</style>
 	</head>
 	<body>
-		<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+		<header class="navbar sticky-top bg-primary flex-md-nowrap p-0 shadow" data-bs-theme="primary">
 			<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="{{path('app_visitor_welcome')}}">Oumi</a>
 			<ul class="navbar-nav flex-row d-md-none">
 				<li class="nav-item text-nowrap">
@@ -166,8 +166,8 @@
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-					<div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+				<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-primary">
+					<div class="offcanvas-md offcanvas-end bg-body-primary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
 						<div class="offcanvas-header">
 							<h5 class="offcanvas-title" id="sidebarMenuLabel">Oumi</h5>
 							<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
@@ -175,43 +175,43 @@
 						<div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 active text-dark" aria-current="page" href="{{path('app_admin_home')}}">
+									<a class="nav-link d-flex align-items-center gap-2 active text-primary" aria-current="page" href="{{path('app_admin_home')}}">
                                         <i class="fa-solid fa-house"></i>
 										Tableau de bord
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_category_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_category_index')}}">
                                         <i class="fa-solid fa-folder"></i>
 										Categories
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_post_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_post_index')}}">
                                         <i class="fa-solid fa-feather-pointed"></i>
 										Articles
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_tag_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_tag_index')}}">
                                         <i class="fa-solid fa-tags"></i>
 										Tags
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_contact_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_contact_index')}}">
                                         <i class="fa-solid fa-address-card"></i>
 										Contacts
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_user_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_user_index')}}">
                                         <i class="fa-solid fa-users"></i>
 										Utilisateurs
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_comment_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_comment_index')}}">
                                         <i class="fa-solid fa-comments"></i>
 										Commentaires
 									</a>
@@ -222,13 +222,13 @@
 							
 							<ul class="nav flex-column mb-auto">
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_profile_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_profile_index')}}">
                                         <i class="fa-solid fa-user"></i>
 										Mon profil
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_setting_index')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_admin_setting_index')}}">
                                         <i class="fa-solid fa-toolbox"></i>
 										Paramètres
 									</a>
@@ -237,19 +237,19 @@
 							<hr class="my-3">
 							<ul class="nav flex-column mb-auto">
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_user_home')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_user_home')}}">
                                         <i class="fa-solid fa-house-user"></i>
 										Espace utilisateur
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_visitor_welcome')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_visitor_welcome')}}">
                                         <i class="fa-solid fa-rotate-left"></i>
 										Retour au site
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_logout')}}">
+									<a class="nav-link d-flex align-items-center gap-2 text-primary" href="{{path('app_logout')}}">
                                         <i class="fa-solid fa-right-from-bracket"></i>
 										Déconnexion
 									</a>

@@ -5,7 +5,7 @@
 {% block description %}Accueil{% endblock %}
 
 {% block main %}
-	<h1 class="text-center my-3 display-5">
+	<h1 class="text-center text-primary my-3 display-5">🌿
 		{{app.user.firstName}}
 		{{app.user.lastName}}
 	</h1>
@@ -13,7 +13,7 @@
 	<div class="container my-5">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="card text-dark bg-light mb-3">
+				<div class="card text-light bg-primary mb-3">
                     <div class="card-header">Liste des comentaires</div>
                     <div class="card-body">
                         <p class="card-title">{{ app.user.comments|length }}</p>
@@ -21,7 +21,7 @@
                 </div>
 			</div>
 			<div class="col-md-6">
-                <div class="card text-dark bg-light mb-3">
+                <div class="card text-light bg-primary mb-3">
                     <div class="card-header">Liste des likes</div>
                     <div class="card-body">
                         <p class="card-title">{{ app.user.likes|length }}</p>
