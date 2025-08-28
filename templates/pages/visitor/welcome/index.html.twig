@@ -15,7 +15,7 @@
 					<img src="/images/static/welcome/Nature.png" class="img-fluid" alt="Oumi souhantant la bienvenue sur son blog">
 				</div>
 				<div class="col-md-7 order-md-1 d-flex flex-column justify-content-evenly align-items-center">
-					<h1 class="display-5 my-5">Bienvenue sur mon blog !</h1>
+					<h1 class="display-5 my-5">Bienvenue sur 🌿Oumi-blog !</h1>
 					<div>
 						<p>Oumi, exploratrice du bien-être par les plantes et la médecine douce.</p>
 						<p>Enssemble, découvrons les clés pour une santé simple, durable et accessible à tous.</p>
@@ -32,7 +32,7 @@
 	{# About-me section #}
 	<section id="about-me" class="bg-light py-3">
 
-		<h2 class="text-center my-3 display-5">Qui suis-je ?</h2>
+		<h2 class="text-center my-3 display-5">🌿Qui suis-je ?</h2>
 
 		<div class="container">
 			<div class="row">
@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
 					<p>
-						Oumi est une passionnée des plantes médicinales depuis son plus jeune âge. Ayant grandi dans un environnement où les remèdes naturels étaient au cœur du quotidien, elle a développé une véritable affection pour les vertus des plantes. Son intérêt s'est transformé en une quête de connaissances approfondies, l'amenant à étudier les propriétés médicinales de diverses espèces végétales
+						🌿Oumi est une passionnée des plantes médicinales depuis son plus jeune âge. Ayant grandi dans un environnement où les remèdes naturels étaient au cœur du quotidien, elle a développé une véritable affection pour les vertus des plantes. Son intérêt s'est transformé en une quête de connaissances approfondies, l'amenant à étudier les propriétés médicinales de diverses espèces végétales
 					</p>
 					<p>
 						Après avoir suivi une formation spécialisée, Oumi est devenue une véritable experte dans le domaine des plantes médicinales. Elle consacre aujourd'hui son temps à partager ses connaissances avec le plus grand nombre, en offrant des conseils personnalisés et en animant des ateliers sur les bienfaits des plantes.
@@ -56,7 +56,7 @@
 
 	{# Last-posts sections #}
 	<section class="py-3">
-		<h2 class="text-center my-3 display-5">Mes derniers articles</h2>
+		<h2 class="text-center my-3 display-5">🌿Mes derniers articles</h2>
 
 		<div class="container">
 			<div class="row">
@@ -64,7 +64,7 @@
 					<div class="col-md-4">
 						<div class="card mb-3 shadow">
 							<h3 class="card-header">
-								{{post.title}}
+								{{post.title|u.truncate('50', '...')}}
 							</h3>
 							<div class="card-body">
 								<p>

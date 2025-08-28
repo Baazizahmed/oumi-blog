@@ -8,7 +8,7 @@
 
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Mon profil</h1>
+    <h1 class="text-center text-primary my-3 display-5">Mon profil</h1>
 
     <div class="container mt-5">
         <div class="row">
@@ -22,7 +22,7 @@
                     <p><strong>Email</strong>: {{app.user.email}} </p>
                     <div class="">
                         <a href="{{path('app_user_profile_edit_profile')}}" class="m-2 btn btn-sm btn-secondary shadow">Modifier mon profil</a>
-                        <a href="{{path('app_user_profile_edit_password')}}" class="m-2 btn btn-sm btn-dark shadow">Modifier mon mot de passe</a>
+                        <a href="{{path('app_user_profile_edit_password')}}" class="m-2 btn btn-sm btn-primary shadow">Modifier mon mot de passe</a>
                     </div>
                 </div>
             </div>

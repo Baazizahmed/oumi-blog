@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5 my-3">Liste des articles</h1>
+    <h1 class="text-center text-primary my-3 display-5 my-3">🌿Liste des articles</h1>
 
     {% include 'components/alert.html.twig' %}
 
@@ -34,7 +34,7 @@
 
     <div class="table-responsive">
        <table id="myTable" class="table table-striped table-hover table-bordered text-center">
-            <thead class="table-dark">
+            <thead class="table-primary">
                 <tr>
                     <th>Id</th>
                     <th>Image</th>
@@ -87,7 +87,7 @@
 
                         </td>
                         <td>
-                            <a href="{{path('app_admin_post_show', {'id':post.id})}}" class="btn btn-sm btn-dark">Lire</a>
+                            <a href="{{path('app_admin_post_show', {'id':post.id})}}" class="btn btn-sm btn-primary">Lire</a>
                             
                         </td>
                         <td>{{post.createdAt |date() }}</td>
