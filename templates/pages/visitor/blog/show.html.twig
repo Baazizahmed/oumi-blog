@@ -50,10 +50,10 @@
 				<a id="like-link" href="{{path('app_visitor_blog_post_like',{'id':post.id, 'slug':post.slug})}}">
 					{% if app.user and post.isLikedBy(app.user) %}
 						<i class="fa-solid fa-thumbs-up"></i>
-						{# Pouce liké #}
+						
 					{% else %}
 						<i class="fa-regular fa-thumbs-up"></i>
-						{# Pouce non liké #}
+						
 					{% endif %}
 				</a>
 				<span id="total-likes-container">{{post.likes|length}}</span>
@@ -61,7 +61,7 @@
 			</div>
 
 			{% if app.user %}
-				{# Form #}
+				
 				<div class="my-5">
 					{{ form_start(form, {'action': path('app_visitor_blog_post_show', {'id':post.id, 'slug':post.slug})~'#comments-container'})}}
 					<div class="mb-3">
