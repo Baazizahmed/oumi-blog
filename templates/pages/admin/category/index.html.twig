@@ -1,74 +1,83 @@
 {% extends 'themes/base_admin.html.twig' %}
 
-{% block title %}Liste des catégories{% endblock %}
+{% block title %}Liste des catégories
+{% endblock %}
 
-{% block description %}Liste des catégories{% endblock %}
+{% block description %}Liste des catégories
+{% endblock %}
 
 {% block jQuery %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock %}
 
 {% block dataTables %}
-    <link href="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.css" rel="stylesheet" integrity="sha384-euvbLDizNhjdB+SK/Ai+GY3WCCHaDJM1tnnh2IqvUY9zjhlo21JkywSg8X5hlMY8" crossorigin="anonymous">
- 
-    <script src="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.js" integrity="sha384-1LmfH5u7+DRwux/q4YYqAi+OjwkIVYJdPQijPS9S28cj8AeFnpNCkSVlZgvRdOzb" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/2.3.1/i18n/fr-FR.json',
-                },
-            });
-        } );
-    </script>
+	<link href="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.css" rel="stylesheet" integrity="sha384-euvbLDizNhjdB+SK/Ai+GY3WCCHaDJM1tnnh2IqvUY9zjhlo21JkywSg8X5hlMY8" crossorigin="anonymous">
+
+	<script src="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.js" integrity="sha384-1LmfH5u7+DRwux/q4YYqAi+OjwkIVYJdPQijPS9S28cj8AeFnpNCkSVlZgvRdOzb" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function () {
+$('#myTable').DataTable({
+language: {
+url: 'https://cdn.datatables.net/plug-ins/2.3.1/i18n/fr-FR.json'
+}
+});
+});
+	</script>
 {% endblock %}
 
 
-
-
 {% block main %}
-    <h1 class="text-center text-primary my-3 display-5">🌿Liste des catégories</h1>
+	<h1 class="text-center text-primary my-3 display-5">🌿Liste des catégories</h1>
 
-    {% include 'components/alert.html.twig' %}
+	{% include 'components/alert.html.twig' %}
 
-    <div class="d-flex justify-content-end align-items-center my-3">
-        <a href="{{path('app_admin_category_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouvelle catégorie</a>
-    </div>
+	<div class="d-flex justify-content-end align-items-center my-3">
+		<a href="{{path('app_admin_category_create')}}" class="btn btn-primary shadow">
+			<i class="fa-solid fa-plus"></i>
+			Nouvelle catégorie</a>
+	</div>
 
 
-    <div class="table-responsive">
-        <table id="myTable" class="table table-striped table-bordered text-center">
-        <thead class="table-primary">
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Slug</th>
-                <th>Créé le</th>
-                <th>Modifié le</th>
-                <th>Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for category in categories %}
-                <tr>
-                    <td>{{category.id}}</td>
-                    <td>{{category.name}}</td>
-                    <td>{{category.slug}}</td>
-                    <td>{{category.createdAt|date()}}</td>
-                    <td>{{category.updatedAt|date()}}</td>
-                    <td>
-                        <a href="{{path('app_admin_category_edit',{'id':category.id})}}" class="btn btn-sm btn-secondary">Modifier</a>
-                        
-                        <form class="d-inline" action="{{path('app_admin_category_delete',{'id':category.id})}}" method="post">
-                            <input type="hidden" name="csrf_token" value="{{csrf_token('delete-category-'~category.id)}}">
-                            <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('Attention!!! En supprimant cette catégorie, vous supprimerez tous ses articles associés. Confirmer la suppression?')">
-                        </form>
-                    </td>
-                </tr>   
-            {% endfor %}
-        </tbody>
+	<div class="table-responsive">
+		<table id="myTable" class="table table-striped table-bordered text-center">
+			<thead class="table-primary">
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Slug</th>
+					<th>Créé le</th>
+					<th>Modifié le</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for category in categories %}
+					<tr>
+						<td>{{category.id}}</td>
+						<td>{{category.name}}</td>
+						<td>{{category.slug}}</td>
+						<td>{{category.createdAt|date()}}</td>
+						<td>{{category.updatedAt|date()}}</td>
+						<td>
+							<a href="{{path('app_admin_category_edit',{'id':category.id})}}" class="text-secondary text-decoration-none" title="Modifier">
+								<i class="fa-solid fa-pen-to-square"></i>
+							</a>
 
-        </table>
-    </div>
+
+							<form class="d-inline" action="{{path('app_admin_category_delete',{'id':category.id})}}" method="post">
+								<input type="hidden" name="csrf_token" value="{{csrf_token('delete-category-'~category.id)}}">
+
+								<button type="submit" class="border-0 bg-transparent p-0 text-danger" onclick="return confirm('Attention!!! En supprimant cette catégorie, vous supprimerez tous ses articles associés. Confirmer la suppression?')" title="Supprimer">
+									<i class="fa-solid fa-trash"></i>
+								</button>
+							</form>
+
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+	</div>
 
 {% endblock %}

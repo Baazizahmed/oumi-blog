@@ -91,14 +91,26 @@
                             
                         </td>
                         <td>{{post.createdAt |date() }}</td>
-                        <td>
-                            <a href="{{path('app_admin_post_edit', {'id':post.id})}}" class="btn btn-sm btn-secondary m-1">Modifier</a>
+                        <td
+                            >
 
-                            <form class="d-inline" action="{{path('app_admin_post_delete',{'id':post.id})}}" method="post">
+                            {# 1. Icône "Modifier" - C'est un lien <a> sans les classes de bouton #}
+                            <a href="{{path('app_admin_post_edit', {'id':post.id})}}" class="text-secondary text-decoration-none" title="Modifier">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+
+                            {# 2. Icône "Supprimer" - C'est un formulaire avec un bouton <button> transparent #}
+                            <form action="{{path('app_admin_post_delete',{'id':post.id})}}" method="post">
                                 <input type="hidden" name="csrf_token" value="{{csrf_token('delete-post-'~post.id)}}">
-                                <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('etes vous sur de suprimez cet article')">
+
+                                <button type="submit" class="border-0 bg-transparent p-0 text-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')" title="Supprimer">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </form>
+
                         </td>
+
+
                     </tr>
                 {% endfor %}
                 

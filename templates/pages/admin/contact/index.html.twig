@@ -80,7 +80,9 @@
                     <td>
                         <form class="d-inline" action="{{path('app_admin_contact_delete',{'id':contact.id})}}" method="post">
                             <input type="hidden" name="csrf_token" value="{{csrf_token('delete-contact-'~contact.id)}}">
-                            <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('Confirmer la suppression?')">
+                            <button type="submit" class="border-0 bg-transparent p-0 text-danger" onclick="return confirm('Confirmer la suppression?')"title="Supprimer">
+                                    <i class="fa-solid fa-trash"></i>
+                            </button>
                         </form>
                     </td>
                 </tr>   

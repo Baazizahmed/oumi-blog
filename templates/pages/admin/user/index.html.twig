@@ -1,93 +1,96 @@
 {% extends 'themes/base_admin.html.twig' %}
 
-{% block title %}Liste des utilisatuers{% endblock %}
+{% block title %}Liste des utilisatuers
+{% endblock %}
 
-{% block description %}Liste des utilisatuers{% endblock %}
+{% block description %}Liste des utilisatuers
+{% endblock %}
 
 {% block jQuery %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock %}
 
 {% block dataTables %}
-    <link href="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.css" rel="stylesheet" integrity="sha384-euvbLDizNhjdB+SK/Ai+GY3WCCHaDJM1tnnh2IqvUY9zjhlo21JkywSg8X5hlMY8" crossorigin="anonymous">
- 
-    <script src="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.js" integrity="sha384-1LmfH5u7+DRwux/q4YYqAi+OjwkIVYJdPQijPS9S28cj8AeFnpNCkSVlZgvRdOzb" crossorigin="anonymous"></script>
-    <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/2.3.1/i18n/fr-FR.json',
-                },
-            });
-        } );
-    </script>
+	<link href="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.css" rel="stylesheet" integrity="sha384-euvbLDizNhjdB+SK/Ai+GY3WCCHaDJM1tnnh2IqvUY9zjhlo21JkywSg8X5hlMY8" crossorigin="anonymous">
+
+	<script src="https://cdn.datatables.net/v/dt/dt-2.3.1/datatables.min.js" integrity="sha384-1LmfH5u7+DRwux/q4YYqAi+OjwkIVYJdPQijPS9S28cj8AeFnpNCkSVlZgvRdOzb" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function () {
+        $('#myTable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/2.3.1/i18n/fr-FR.json'
+            }
+        });
+    });
+</script>
+
 {% endblock %}
 
 
-
-
 {% block main %}
-    <h1 class="text-center text-primary my-3 display-5">🌿Liste des utilisatuers</h1>
+	<h1 class="text-center text-primary my-3 display-5">🌿Liste des utilisatuers</h1>
 
-    {% include 'components/alert.html.twig' %}
+	{% include 'components/alert.html.twig' %}
 
 
-    <div class="table-responsive">
-        <table id="myTable" class="table table-striped table-bordered text-center">
-        <thead class="table-primary">
-            <tr>
-                <th>Id</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Statut</th>
-                <th>Roles</th>
-                <th>Créé le</th>
-                <th>Modifié le</th>
-                <th>Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>{{user.id}}</td>
-                    <td>{{user.firstName}}</td>
-                    <td>{{user.lastName}}</td>
-                    <td>{{user.email}}</td>
-                    <td>
-                        {% if user.isVerified %}
-                            <span>Compte vérifié le {{user.verifiedAt|date()}}</span>
-                        {% else %}
-                            <span>Compte non vérifié</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% for role in user.roles %}
-                            <span class="badge bg-secondary m-1">{{role}}</span>
-                        {% endfor %}
-                    </td>
-                    <td>{{user.createdAt|date()}}</td>
-                    <td>{{user.updatedAt|date()}}</td>
-                    <td>
-                        {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
-                            <a href="{{path('app_admin_user_edit_roles',{'id':user.id})}}" class="m-1 btn btn-sm btn-secondary">Modifier</a>
-                                                    
-                            <form class="m-1 d-inline" action="{{path('app_admin_user_delete',{'id':user.id})}}" method="post">
-                                    <input type="hidden" name="csrf_token" value="{{csrf_token('delete-user-'~user.id)}}">
-                                    <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('Confirmer la suppression?')">
-                                </form>
-                        {% endif %}
+	<div class="table-responsive">
+		<table id="myTable" class="table table-striped table-bordered text-center">
+			<thead class="table-primary">
+				<tr>
+					<th>Id</th>
+					<th>Prénom</th>
+					<th>Nom</th>
+					<th>Email</th>
+					<th>Statut</th>
+					<th>Roles</th>
+					<th>Créé le</th>
+					<th>Modifié le</th>
+					<th>Options</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{user.id}}</td>
+						<td>{{user.firstName}}</td>
+						<td>{{user.lastName}}</td>
+						<td>{{user.email}}</td>
+						<td>
+							{% if user.isVerified %}
+								<span>Compte vérifié le
+									{{user.verifiedAt|date()}}</span>
+							{% else %}
+								<span>Compte non vérifié</span>
+							{% endif %}
+						</td>
+						<td>
+							{% for role in user.roles %}
+								<span class="badge bg-secondary m-1">{{role}}</span>
+							{% endfor %}
+						</td>
+						<td>{{user.createdAt|date()}}</td>
+						<td>{{user.updatedAt|date()}}</td>
+						<td>
+							{% if 'ROLE_SUPER_ADMIN' not in user.roles %}
+								<a href="{{path('app_admin_user_edit_roles',{'id':user.id})}}" class="text-secondary text-decoration-none" title="Modifier">
+									<i class="fa-solid fa-pen-to-square"></i>
+								</a>
 
-                        
+								<form class="m-1 d-inline" action="{{path('app_admin_user_delete',{'id':user.id})}}" method="post">
+									<input type="hidden" name="csrf_token" value="{{csrf_token('delete-user-'~user.id)}}">
+									<button type="submit" class="border-0 bg-transparent p-0 text-danger" onclick="return confirm('Confirmer la suppression?')" title="Supprimer">
+										<i class="fa-solid fa-trash"></i>
+									</button>
+								</form>
+							{% endif %}
 
-                        
-                       
-                    </td>
-                </tr>   
-            {% endfor %}
-        </tbody>
 
-        </table>
-    </div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+	</div>
 
 {% endblock %}

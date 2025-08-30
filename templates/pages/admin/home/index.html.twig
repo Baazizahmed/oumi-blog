@@ -1,87 +1,89 @@
 {% extends 'themes/base_admin.html.twig' %}
 
-{% block title %}Tableau de bord{% endblock %}
+{% block title %}Tableau de bord
+{% endblock %}
 
-{% block description %}Tableau de bord{% endblock %}
+{% block description %}Tableau de bord
+{% endblock %}
 
 {% block main %}
-    <h1 class="text-center text-primary my-3 display-5">🌿 {{app.user.firstName}} {{app.user.lastName}} </h1>
+	<h1 class="text-center text-primary my-3 display-5">🌿
+		{{app.user.firstName}}
+		{{app.user.lastName}}
+	</h1>
 
-     <div class="container my-5">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <a class="text-decoration-none text-light" href="{{path('app_admin_category_index')}}">Les catégories</a>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{categories_count}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <a class="text-decoration-none text-light" href="{{path('app_admin_post_index')}}">Les articles</a>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{posts_count}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <a class="text-decoration-none text-light" href="{{path('app_admin_tag_index')}}">Les tags</a>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{tags_count}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <a class="text-decoration-none text-light" href="{{path('app_admin_comment_index')}}">Les commentaires</a>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{comments_count}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <a class="text-decoration-none text-light" href="{{path('app_admin_user_index')}}">Les utilisateurs</a>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{users_count}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <a class="text-decoration-none text-light" href="{{path('app_admin_contact_index')}}">Les contacts</a>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{contacts_count}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3">
-                    <div class="card-header">
-                        <a class="text-decoration-none text-light" href="#">Les likes</a>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{likes_count}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container my-5">
+		<div class="row">
+			<div class="col-md-4 col-lg-3 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<a class="text-decoration-none text-light" href="{{path('app_admin_category_index')}}">catégories</a>
+						<p class="card-title h3 mt-auto">{{categories_count}}
+							<i class="fa-solid fa-folder"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<a class="text-decoration-none text-light" href="{{path('app_admin_post_index')}}">articles</a>
+						<p class="card-title h3 mt-auto">{{posts_count}}
+							<i class="fa-solid fa-feather-pointed"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<a class="text-decoration-none text-light" href="{{path('app_admin_tag_index')}}">tags</a>
+						<p class="card-title h3 mt-auto">{{tags_count}}
+							<i class="fa-solid fa-tags"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<a class="text-decoration-none text-light" href="{{path('app_admin_comment_index')}}">commentaires</a>
+						<p class="card-title h3 mt-auto">{{comments_count}}
+							<i class="fa-solid fa-comments"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<a class="text-decoration-none text-light" href="{{path('app_admin_user_index')}}">utilisateurs</a>
+						<p class="card-title h3 mt-auto">{{users_count}}
+							<i class="fa-solid fa-users"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<a class="text-decoration-none text-light" href="{{path('app_admin_contact_index')}}">contacts</a>
+						<p class="card-title h3 mt-auto">{{contacts_count}}
+							<i class="fa-solid fa-address-card"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-3 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<a class="text-decoration-none text-light" href="#">likes</a>
+						<p class="card-title h3 mt-auto">{{likes_count}}
+							<i class="fa-solid fa-heart"></i>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
