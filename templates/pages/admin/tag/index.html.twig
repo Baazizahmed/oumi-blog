@@ -57,12 +57,16 @@
                     <td>{{tag.createdAt|date()}}</td>
                     <td>{{tag.updatedAt|date()}}</td>
                     <td>
-                        <a href="{{path('app_admin_tag_edit',{'id':tag.id})}}" class="btn btn-sm btn-secondary">Modifier</a>
-                        
+                        <a href="{{path('app_admin_tag_edit',{'id':tag.id})}}" class="text-secondary text-decoration-none" title="Modifier">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
                         <form class="d-inline" action="{{path('app_admin_tag_delete',{'id':tag.id})}}" method="post">
                             <input type="hidden" name="csrf_token" value="{{csrf_token('delete-tag-'~tag.id)}}">
-                            <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('Attention!!! En supprimant cette tag, vous supprimerez tous ses articles associés. Confirmer la suppression?')">
+                            <button type="submit" class="border-0 bg-transparent p-0 text-danger" onclick="return confirm('Attention!!! En supprimant cette tag, vous supprimerez tous ses articles associés. Confirmer la suppression?')" title="Supprimer">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </form>
+                        
                     </td>
                 </tr>   
             {% endfor %}

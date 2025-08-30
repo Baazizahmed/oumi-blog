@@ -2,7 +2,8 @@
 
 {% block title %}{% endblock %}
 
-{% block description %}Accueil{% endblock %}
+{% block description %}Accueil
+{% endblock %}
 
 {% block main %}
 	<h1 class="text-center text-primary my-3 display-5">🌿
@@ -12,22 +13,31 @@
 
 	<div class="container my-5">
 		<div class="row">
-			<div class="col-md-6">
-				<div class="card text-light bg-primary mb-3">
-                    <div class="card-header">Liste des comentaires</div>
-                    <div class="card-body">
-                        <p class="card-title">{{ app.user.comments|length }}</p>
-                    </div>
-                </div>
+			<div
+				class="col-md-6 mb-3">
+				{# On utilise text-bg-primary pour le style vert et blanc, et h-100 pour la hauteur égale #}
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<span class="card-title">Liste des commentaires</span>
+						{# On ajoute l'icône à côté du nombre #}
+						<p class="h3 mt-auto">{{ app.user.comments|length }}
+							<i class="fa-solid fa-comments"></i>
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-6">
-                <div class="card text-light bg-primary mb-3">
-                    <div class="card-header">Liste des likes</div>
-                    <div class="card-body">
-                        <p class="card-title">{{ app.user.likes|length }}</p>
-                    </div>
-                </div>
-            </div>
+			<div class="col-md-6 mb-3">
+				<div class="card text-bg-primary h-100">
+					<div class="card-body d-flex flex-column">
+						<span class="card-title">Liste des likes</span>
+						{# On ajoute l'icône à côté du nombre #}
+						<p class="h3 mt-auto">{{ app.user.likes|length }}
+							<i class="fa-solid fa-heart"></i>
+						</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 {% endblock %}
+

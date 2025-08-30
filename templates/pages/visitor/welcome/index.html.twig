@@ -47,7 +47,7 @@
 						Après avoir suivi une formation spécialisée, Oumi est devenue une véritable experte dans le domaine des plantes médicinales. Elle consacre aujourd'hui son temps à partager ses connaissances avec le plus grand nombre, en offrant des conseils personnalisés et en animant des ateliers sur les bienfaits des plantes.
 					</p>
 					<p>
-						À travers son blog, Oumi souhaite sensibiliser le public aux alternatives naturelles pour le bien-être. Elle y partage des recettes, des conseils pratiques, et des témoignages, le tout avec une touche personnelle et authentique.
+						À travers son blog, Oumi souhaite sensibiliser le public aux alternatives naturelles pour le bien-être. Elle y partage des recettes, des conseils pratiques, et des témoignages, le tout avec une touche personnelle et authentique.🌿
 					</p>
 				</div>
 			</div>
@@ -61,15 +61,21 @@
 		<div class="container">
 			<div class="row">
 				{% for post in posts %}
-					<div class="col-md-4">
-						<div class="card mb-3 shadow">
+					<div class="col-md-4 mb-3">
+
+
+						<div class="card h-100 shadow">
 							<h3 class="card-header">
 								{{post.title|u.truncate('50', '...')}}
 							</h3>
-							<div class="card-body">
+
+
+							<div class="card-body d-flex flex-column">
 								<p>
 									<strong>Catégorie</strong>:
-									{{post.category.name}}</p>
+									{{post.category.name}}
+								</p>
+
 								{% if post.tags is not empty %}
 									<p>
 										<strong>Tags</strong>:
@@ -78,10 +84,14 @@
 										{% endfor %}
 									</p>
 								{% endif %}
-                                <p>
-                                    Publié {{post.publishedAt|ago()}}
-                                </p>
-								<a href="{{path('app_visitor_blog_post_show',{'id':post.id,'slug':post.slug})}}" class="btn btn-primary">Lire l'article</a>
+
+								<p>
+									Publié
+									{{post.publishedAt|ago()}}
+								</p>
+								<a href="{{path('app_visitor_blog_post_show',{'id':post.id,'slug':post.slug})}}" class="btn btn-primary mt-auto">
+									Lire l'article
+								</a>
 							</div>
 						</div>
 					</div>
@@ -90,9 +100,11 @@
 		</div>
 	</section>
 
+
 	{# Contact-section #}
 	<div class="py-3 text-center bg-light">
 		<a href="{{path('app_visitor_contact_create')}}" class="my-3 btn btn-lg btn-primary shadow">Contactez-moi</a>
 	</div>
 
 {% endblock %}
+
