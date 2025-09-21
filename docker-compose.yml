@@ -37,6 +37,16 @@ services:
       - "33066:3306"
     networks:
       - oumi_blog_net
+    
+     # AJOUTE CE BLOC CI-DESSOUS
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - oumi_blog_net # VÉRIFIE que le nom du réseau est le même que pour les autres services
+
 
 volumes:
   db_data:
