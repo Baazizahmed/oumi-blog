@@ -46,7 +46,13 @@ services:
       - "8080:8080"
     networks:
       - oumi_blog_net # VÉRIFIE que le nom du réseau est le même que pour les autres services
-
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      - oumi_blog_net # VÉRIFIE que le nom du réseau est le même que pour les autres services
 
 volumes:
   db_data:
